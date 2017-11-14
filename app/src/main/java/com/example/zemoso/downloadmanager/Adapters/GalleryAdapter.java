@@ -1,14 +1,9 @@
 package com.example.zemoso.downloadmanager.Adapters;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zemoso.downloadmanager.Interface.DownloadUrl;
@@ -58,15 +53,15 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         return galleryDataList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView mTextView;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             mTextView = itemView.findViewById(R.id.burst_text);
         }
 
-        public TextView getmTextView(){
+        TextView getmTextView(){
             return mTextView;
         }
     }

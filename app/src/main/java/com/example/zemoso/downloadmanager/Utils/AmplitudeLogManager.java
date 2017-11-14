@@ -1,5 +1,7 @@
 package com.example.zemoso.downloadmanager.Utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.net.TrafficStats;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,6 +36,7 @@ public class AmplitudeLogManager {
      * @param failReason reason for the failure, can be null if download succeeded
      */
    public static void logFileDownloadStatus(
+           Context context,
             @Nullable File file,
             @NonNull String fileUrl,
             @NonNull String type,
@@ -61,6 +64,7 @@ public class AmplitudeLogManager {
                 downloadProperties.put(Keys.TIME_TAKEN, timeTakenInSecs);
                 downloadProperties.put(Keys.MEDIA_URL, fileUrl);
                 downloadProperties.put(Keys.DOWNLOAD_STATUS, downloadStatus);
+                downloadProperties.put(Keys.NETWORK_TYPE_END, getCurrentNetworkType(context));
 
                 Amplitude.getInstance().logEvent(Keys.MEDIA_DOWNLOAD_EVENT, downloadProperties);
             } catch (JSONException e) {
@@ -74,11 +78,26 @@ public class AmplitudeLogManager {
                 downloadProperties.put(Keys.MEDIA_URL, fileUrl);
                 downloadProperties.put(Keys.DOWNLOAD_STATUS, downloadStatus);
                 downloadProperties.put(Keys.FAIL_REASON, failReason);
+                downloadProperties.put(Keys.NETWORK_TYPE_END, getCurrentNetworkType(context));
 
                 Amplitude.getInstance().logEvent(Keys.MEDIA_DOWNLOAD_EVENT, downloadProperties);
             } catch (JSONException e) {
                 Log.e("Utils#Amplitude", "Amplitude JSON error", e);
             }
+        }
+    }
+
+    public static String getCurrentNetworkType(Context context) {
+        final ConnectivityManager connMgr = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        final android.net.NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        final android.net.NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (wifi.isConnectedOrConnecting ()) {
+            return "Wifi";
+        } else if (mobile.isConnectedOrConnecting ()) {
+            return "Mobile";
+        } else {
+            return "No network";
         }
     }
 

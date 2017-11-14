@@ -1,8 +1,7 @@
 package com.example.zemoso.downloadmanager.POJO;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by zemoso on 14/11/17.
@@ -12,17 +11,14 @@ public class GalleryData {
 
     private String id;
     private String  url;
+
+    public GalleryData(JSONObject data) throws JSONException{
+        id = data.getString("id");
+        url = data.getString("url");
+    }
+
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setUrl(String url) {
-
-        this.url = url;
     }
 
     public String getUrl() {

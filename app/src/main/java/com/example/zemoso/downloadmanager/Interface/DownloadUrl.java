@@ -7,5 +7,5 @@ import com.example.zemoso.downloadmanager.POJO.GalleryData;
  */
 
 public interface DownloadUrl {
-    public void setData(GalleryData galleryData);
+    void setData(GalleryData galleryData);
 }

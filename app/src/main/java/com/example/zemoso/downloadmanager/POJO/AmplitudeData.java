@@ -1,7 +1,5 @@
 package com.example.zemoso.downloadmanager.POJO;
 
-import java.io.File;
-
 /**
  * Created by zemoso on 14/11/17.
  */
