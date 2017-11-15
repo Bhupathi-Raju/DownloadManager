@@ -177,14 +177,22 @@ public class MainActivity extends AppCompatActivity implements DownloadManager {
               AmplitudeData amplitudeData = amplitudeDataList.get(i);
                 if(amplitudeData.id == referenceId){
                     Log.d("path Exists",new File(amplitudeData.filePath).exists() + "");
-                    AmplitudeLogManager.logFileDownloadStatus(MainActivity.this, new File(amplitudeData.filePath),amplitudeData.url,"mp4",
-                            amplitudeData.startTime
-                    ,amplitudeData.startBytes,isDownloadSuccess,amplitudeData.downloadsAlreadyInProgress,reason);
+                    AmplitudeLogManager.logFileDownloadStatus(
+                            MainActivity.this,
+                            new File(amplitudeData.filePath),
+                            amplitudeData.url,
+                            "mp4",
+                            amplitudeData.startTime,
+                            amplitudeData.startBytes,
+                            isDownloadSuccess,
+                            amplitudeData.downloadsAlreadyInProgress,
+                            reason,
+                            downloadingBurstId
+                    );
                     amplitudeDataList.remove(i);
                 }
             }
         }
     };
     //endregion
-
 }

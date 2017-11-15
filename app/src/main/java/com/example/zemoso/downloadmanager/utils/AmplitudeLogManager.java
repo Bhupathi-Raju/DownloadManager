@@ -44,7 +44,8 @@ public class AmplitudeLogManager {
             long startBytes,
             boolean downloadStatus,
             int downloadsAlreadyInQueue,
-            @Nullable String failReason){
+            @Nullable String failReason,
+            int downloadBurstId){
         long endTime = System.currentTimeMillis();
         long endBytes = TrafficStats.getTotalRxBytes();
         float timeTakenInSecs = ((endTime - startTime) / 1000.0f);
@@ -56,6 +57,7 @@ public class AmplitudeLogManager {
             long size = file.length();
             float sizeInMb = (size / 1000000.0f);
             try {
+                downloadProperties.put(Keys.BURST_DOWNLOAD_ID,downloadBurstId);
                 downloadProperties.put(Keys.MEDIA_SIZE, sizeInMb);
                 downloadProperties.put(Keys.DOWNLOADS_ALREADY_IN_QUEUE,downloadsAlreadyInQueue);
                 downloadProperties.put(Keys.MB_RECEIVED, mbReceived);
@@ -72,6 +74,7 @@ public class AmplitudeLogManager {
             }
         }else{
             try {
+                downloadProperties.put(Keys.BURST_DOWNLOAD_ID,downloadBurstId);
                 downloadProperties.put(Keys.MB_RECEIVED, mbReceived);
                 downloadProperties.put(Keys.AMPLITUDE_MEDIA_TYPE, type);
                 downloadProperties.put(Keys.TIME_TAKEN, timeTakenInSecs);
@@ -107,7 +110,7 @@ public class AmplitudeLogManager {
         private static final String MEDIA_DOWNLOAD_EVENT = "Media Download";
         private static final String BURST_UPLOAD_EVENT = "Burst Upload";
         private static final String USER_CONTACT_EVENT = "User Contact";
-
+        private static final String BURST_DOWNLOAD_ID = "Burst Id";
         private static final String AMPLITUDE_MEDIA_TYPE = "MediaType";
         private static final String MEDIA_SIZE = "MediaSize";
         private static final String TIME_TAKEN = "TimeTaken";
