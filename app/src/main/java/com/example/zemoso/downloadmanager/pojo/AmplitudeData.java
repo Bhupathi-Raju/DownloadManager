@@ -1,4 +1,4 @@
-package com.example.zemoso.downloadmanager.POJO;
+package com.example.zemoso.downloadmanager.pojo;
 
 /**
  * Created by zemoso on 14/11/17.

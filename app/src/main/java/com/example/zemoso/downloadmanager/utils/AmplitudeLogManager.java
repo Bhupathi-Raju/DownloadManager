@@ -1,4 +1,4 @@
-package com.example.zemoso.downloadmanager.Utils;
+package com.example.zemoso.downloadmanager.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

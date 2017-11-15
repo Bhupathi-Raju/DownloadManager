@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="black">#131313</color>
+    <color name="card_background">#BBDEFB</color>
+    <color name="progress_color">#0D47A1</color>
+    <color name="failed">#EF9A9A</color>
+    <color name="success">#C8E6C9</color>
+    <color name="paused">#F4FF81</color>
 </resources>

@@ -3,4 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_input_hint">Enter Your Name</string>
+    <string name="submit">Submit</string>
+    <string name="Busrt_Id">Burst Id: %1$s</string>
 </resources>
