@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements DownloadManager {
     BroadcastReceiver onComplete = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d("entered","entered");
             isDownloadInProgress = false;
             Long referenceId = intent.getLongExtra(android.app.DownloadManager.EXTRA_DOWNLOAD_ID,-1);
             boolean isDownloadSuccess = true;

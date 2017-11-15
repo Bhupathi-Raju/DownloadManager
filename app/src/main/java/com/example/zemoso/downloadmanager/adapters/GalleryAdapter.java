@@ -69,10 +69,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<BurstViewHolder>{
                     Toast.makeText(mContext, "Previous download in progress", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(galleryDataList.get(adapterPosition).isDownloaded()){
-                    Toast.makeText(mContext, "This burst is already downloaded in this session. " +
-                            "Restart the app to download it again", Toast.LENGTH_SHORT).show();
-                    return;
+                if(galleryDataList.get(adapterPosition).isDownloaded()) {
+                    holder.getTextView().setBackgroundColor(ContextCompat.getColor(mContext, R.color.card_background));
+                    galleryDataList.get(adapterPosition).setDownloaded(false);
                 }
                 downloadingID = adapterPosition;
                 downloadingHolder = holder;
