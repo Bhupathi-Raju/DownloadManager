@@ -25,6 +25,7 @@
         android:layout_below="@id/name_layout"/>
     <TextView
         android:id="@+id/note"
+        android:textColor="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/standard_padding"
