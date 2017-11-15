@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements DownloadManager {
     private List<AmplitudeData> amplitudeDataList = new ArrayList<>();
     private boolean isDownloadInProgress;
     private GalleryAdapter galleryAdapter;
+    private int downloadingBurstId;
 
     //region Lifecycle Methods
     @Override
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements DownloadManager {
     @Override
     public void setData(GalleryData galleryData) {
         isDownloadInProgress = true;
+        downloadingBurstId = Integer.parseInt(galleryData.getId());
         Toast.makeText(this, "Downloading " + galleryData.getId(), Toast.LENGTH_SHORT).show();
         String url = galleryData.getUrl();
         android.app.DownloadManager.Request request = new android.app.DownloadManager.Request(Uri.parse(url));
@@ -161,17 +163,13 @@ public class MainActivity extends AppCompatActivity implements DownloadManager {
                     galleryAdapter.downloadComplete(false);
                     isDownloadSuccess = false;
                     reason = c.getString(c.getColumnIndex(android.app.DownloadManager.COLUMN_REASON));
-                    Toast.makeText(MainActivity.this, "Burst download Failed "+referenceId, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Burst download Failed "+ downloadingBurstId, Toast.LENGTH_SHORT).show();
                 }
                 if(c.getInt(c.getColumnIndex(android.app.DownloadManager.COLUMN_STATUS))
                         == android.app.DownloadManager.STATUS_SUCCESSFUL){
                     galleryAdapter.downloadComplete(true);
                     isDownloadSuccess = true;
-                    Toast.makeText(MainActivity.this, "Burst download completed "+referenceId, Toast.LENGTH_SHORT).show();
-                }
-                if(c.getInt(c.getColumnIndex(android.app.DownloadManager.COLUMN_STATUS)) ==
-                        android.app.DownloadManager.STATUS_PAUSED){
-                    Toast.makeText(MainActivity.this, "Burst download paused "+referenceId, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Burst download completed "+downloadingBurstId, Toast.LENGTH_SHORT).show();
                 }
             }
 
